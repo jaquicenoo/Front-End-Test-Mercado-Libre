@@ -1,12 +1,17 @@
 const express = require('express');
+const compression = require('compression');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const errorHandler = require('./src/api/middleware/errorHandler');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(compression());
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client/build')));
@@ -15,6 +20,12 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 	});
 }
+
+const items = require('./src/api/controllers/item.controller');
+
+app.use('/api', items);
+
+app.use(errorHandler);
 
 app.listen(port, (error) => {
 	if (error) throw error;

@@ -2,6 +2,12 @@ import React from 'react';
 
 import './App.scss';
 
-const App = () => <h1 className='title'>Prueba Front End Mercadolibre</h1>;
+import SearchBar from './components/search-bar/search-bar.component';
+
+const App = () => (
+	<div>
+		<SearchBar />
+	</div>
+);
 
 export default App;
