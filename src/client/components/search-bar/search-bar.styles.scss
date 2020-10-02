@@ -8,19 +8,33 @@
 	height: 50px;
 	background-color: $yellow;
 	.meli-icon {
-		margin-right: 10px;
+		margin-right: 25px;
+		transform: scale(0.9);
 	}
 	.input-container {
 		display: flex;
 		width: 70%;
+		height: 30px;
+		align-items: stretch;
 		.search-input {
-			height: 25px;
 			width: 100%;
+			border: none;
+			outline: none;
+			padding-left: 15px;
+			border-top-left-radius: $sm-border;
+			border-bottom-left-radius: $sm-border;
 		}
-		img {
+		.search-icon {
+			display: flex;
 			border: 1px solid $base;
 			background-color: $base;
-			padding: 4px;
+			width: 30px;
+			border-bottom-right-radius: $sm-border;
+			border-top-right-radius: $sm-border;
+			cursor: pointer;
+			img {
+				margin: auto;
+			}
 		}
 	}
 }

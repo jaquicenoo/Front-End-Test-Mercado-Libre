@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import SearchIcon from '../../assets/ic_Search.png';
 import MeliIcon from '../../assets/Logo_ML.png';
 
 import './search-bar.styles.scss';
 
-const SearchBar = () => {
+const SearchBar = ({ history }) => {
+	const [searchText, setSearchText] = useState('');
+
+	const hangleChange = ({ target: { value } }) => {
+		setSearchText(value);
+	};
+	const handleSearch = (event) => {
+		if (event.keyCode === 13 || event.type === 'click') {
+			history.push(`/items?q=${searchText}`);
+		}
+	};
 	return (
 		<div className='search-bar-container'>
 			<img className='meli-icon' src={MeliIcon} alt='meli-logo'></img>
@@ -13,11 +24,15 @@ const SearchBar = () => {
 				<input
 					className='search-input'
 					placeholder='Nunca dejes de buscar'
+					onChange={hangleChange}
+					onKeyUp={handleSearch}
 				></input>
-				<img src={SearchIcon} alt='search-icon'></img>
+				<span className='search-icon' onClick={handleSearch}>
+					<img src={SearchIcon} height='15' width='15' alt='search-icon'></img>
+				</span>
 			</div>
 		</div>
 	);
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);

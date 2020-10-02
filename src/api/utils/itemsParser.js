@@ -8,8 +8,12 @@ const getItemsSearch = ({ results = [], filters }) => {
 	return {
 		author,
 		categories: categories
-			? categories.values.map((cat) =>
-					cat.path_from_root.map((root) => root.name)
+			? categories.values.reduce(
+					(acumulator, category) => [
+						...acumulator,
+						...category.path_from_root.map((root) => root.name),
+					],
+					[]
 			  )
 			: [],
 		items: results.map((item) => ({
