@@ -42,7 +42,7 @@ const getItemsDetail = (item, { plain_text }) => {
 				amount: item.price,
 				decimals: 2,
 			},
-			picture: item.thumbnail,
+			picture: item.pictures[0].url,
 			condition: item.condition,
 			free_shipping: item.shipping.free_shipping,
 			sold_quantity: item.sold_quantity,
