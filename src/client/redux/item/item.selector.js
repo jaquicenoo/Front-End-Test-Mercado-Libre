@@ -20,3 +20,13 @@ export const selectCategories = createSelector(
 	[selectProduct],
 	(products) => products.categories ?? []
 );
+
+export const selectItemDetail = createSelector(
+	[selectProduct],
+	(products) => products.selectedItem
+);
+
+export const selectIsItemDetailLoaded = createSelector(
+	[selectProduct],
+	(products) => (products ? !!products.selectedItem : false)
+);

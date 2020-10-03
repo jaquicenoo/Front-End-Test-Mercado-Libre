@@ -1,23 +1,43 @@
 import { takeLatest, put, call, all } from 'redux-saga/effects';
 import ItemActionTypes from './item.types';
 import axios from 'axios';
-import { searchItemsSuccess, searchItemsFailure } from './item.actions';
+import {
+	fetchItemsSuccess,
+	fetchItemDetailSuccess,
+	fetchFailure,
+} from './item.actions';
 
-export function* searchItemsAsync({ payload }) {
+const baseUrl = 'http://localhost:5000/api/items';
+
+export function* fetchItemsAsync({ payload }) {
 	try {
-		const items = yield axios.get(
-			`http://localhost:5000/api/items?q=${payload}`
-		);
-		yield put(searchItemsSuccess(items.data));
+		const items = yield axios.get(baseUrl, { params: { q: payload } });
+		yield put(fetchItemsSuccess(items.data));
 	} catch (error) {
-		yield put(searchItemsFailure(error.message));
+		yield put(fetchFailure(error.message));
 	}
 }
 
-export function* searchItemsStart() {
-	yield takeLatest(ItemActionTypes.SEARCH_ITEMS_START, searchItemsAsync);
+export function* fetchItemDetailAsyn({ payload }) {
+	try {
+		const itemDetail = yield axios.get(`${baseUrl}/${payload}`);
+		yield put(fetchItemDetailSuccess(itemDetail.data));
+	} catch (error) {
+		yield put(fetchFailure(error.message));
+	}
+}
+
+export function* fetchItemsStart() {
+	yield takeLatest(ItemActionTypes.FETCH_ITEMS_START, fetchItemsAsync);
+}
+
+export function* fetchItemDetailStart() {
+	yield takeLatest(
+		ItemActionTypes.FETCH_ITEM_DETAIL_START,
+		fetchItemDetailAsyn
+	);
 }
 
 export function* itemSagas() {
-	yield all([call(searchItemsStart)]);
+	yield all([call(fetchItemsStart), call(fetchItemDetailStart)]);
 }

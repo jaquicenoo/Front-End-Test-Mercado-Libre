@@ -11,10 +11,12 @@ import SearchView from './views/search/search.component';
 const App = () => (
 	<div>
 		<SearchBar />
-		<Switch>
-			<Route exact path='/items' component={SearchView} />
-			<Route exact path='/items/:id' component={ProductDetailView} />
-		</Switch>
+		<div className='container'>
+			<Switch>
+				<Route exact path='/items' component={SearchView} />
+				<Route exact path='/items/:id' component={ProductDetailView} />
+			</Switch>
+		</div>
 	</div>
 );
 

@@ -7,7 +7,6 @@ import { selectCategories } from '../../redux/item/item.selector';
 import './breadcrumb.styles.scss';
 
 const BreadCrumb = ({ categories }) => {
-	console.log(categories);
 	return (
 		<div className='breadcrumb-container'>
 			{categories.map((category, idx) => (

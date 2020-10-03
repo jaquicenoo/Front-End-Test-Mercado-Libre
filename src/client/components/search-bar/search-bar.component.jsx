@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import SearchIcon from '../../assets/ic_Search.png';
 import MeliIcon from '../../assets/Logo_ML.png';
@@ -19,7 +19,9 @@ const SearchBar = ({ history }) => {
 	};
 	return (
 		<div className='search-bar-container'>
-			<img className='meli-icon' src={MeliIcon} alt='meli-logo'></img>
+			<Link className='meli-icon' to='/'>
+				<img src={MeliIcon} alt='meli-logo'></img>
+			</Link>
 			<div className='input-container'>
 				<input
 					className='search-input'

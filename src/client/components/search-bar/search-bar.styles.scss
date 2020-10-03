@@ -5,21 +5,26 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 50px;
+	height: 55px;
 	background-color: $yellow;
 	.meli-icon {
-		margin-right: 25px;
-		transform: scale(0.9);
+		display: flex;
+		justify-content: center;
+		img {
+			margin-right: 25px;
+			cursor: pointer;
+		}
 	}
 	.input-container {
 		display: flex;
-		width: 70%;
-		height: 30px;
+		width: 76%;
+		height: 40px;
 		align-items: stretch;
 		.search-input {
 			width: 100%;
 			border: none;
 			outline: none;
+			font-size: 18px;
 			padding-left: 15px;
 			border-top-left-radius: $sm-border;
 			border-bottom-left-radius: $sm-border;
@@ -28,11 +33,13 @@
 			display: flex;
 			border: 1px solid $base;
 			background-color: $base;
-			width: 30px;
+			width: 40px;
 			border-bottom-right-radius: $sm-border;
 			border-top-right-radius: $sm-border;
 			cursor: pointer;
 			img {
+				width: 18px;
+				height: 18px;
 				margin: auto;
 			}
 		}

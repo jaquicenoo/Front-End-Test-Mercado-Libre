@@ -9,23 +9,28 @@ import {
 } from '../../redux/item/item.selector';
 
 import ProductPreview from '../product-preview/product-preview.component';
-
-import WithSpinner from '../with-spinner/with-spinner.component';
+import Spinner from '../spinner/spinner.component';
 
 import './product-grid.styles.scss';
 
-const ProductGrid = ({ products }) => {
-	return products.map((product) => (
+const ProductGrid = ({ products, isLoading }) => {
+	return isLoading ? (
+		<Spinner />
+	) : (
 		<div className='product-grid-container'>
-			<ProductPreview
-				key={product.id}
-				imageUrl={product.picture}
-				price={product.price}
-				condition={product.condition}
-				title={product.title}
-			/>
+			{products.map((product) => (
+				<ProductPreview
+					key={product.id}
+					id={product.id}
+					imageUrl={product.picture}
+					price={product.price}
+					condition={product.condition}
+					title={product.title}
+					free_shipping={product.free_shipping}
+				/>
+			))}
 		</div>
-	));
+	);
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -33,4 +38,4 @@ const mapStateToProps = createStructuredSelector({
 	isLoading: (state) => !selectIsItemsLoaded(state),
 });
 
-export default WithSpinner(connect(mapStateToProps)(ProductGrid));
+export default connect(mapStateToProps)(ProductGrid);

@@ -12,7 +12,9 @@ router.get('/items', async (req, res, next) => {
 
 		if (!q) throw new BadRequest('Valor faltante');
 
-		const response = await axios.get(`${baseUrl}sites/MLA/search?q=${q}`);
+		const response = await axios.get(`${baseUrl}sites/MLA/search`, {
+			params: { q },
+		});
 
 		if (response.status === 200) {
 			res.json(getItemsSearch(response.data));

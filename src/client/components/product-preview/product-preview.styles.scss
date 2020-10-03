@@ -15,8 +15,13 @@
 		padding-top: 1.5em;
 		flex-direction: column;
 		.price {
-			font-size: 24px;
+			display: flex;
 			margin-bottom: 32px;
+			.shipping-icon {
+				margin: auto 10px;
+				width: 20px;
+				height: 20px;
+			}
 		}
 		.title {
 			font-size: 18px;

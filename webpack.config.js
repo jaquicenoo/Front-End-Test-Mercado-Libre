@@ -52,6 +52,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: './src/client/index.html',
+			favicon: './src/client/assets/Logo_ML.png',
 		}),
 	],
 };

@@ -1,10 +1,25 @@
 import React from 'react';
 
-import './product-preview.styles.scss';
+import ShippingIcon from '../../assets/ic_shipping.png';
+import { withRouter } from 'react-router-dom';
 
-const ProductPreview = ({ imageUrl, price, condition, title }) => {
+import './product-preview.styles.scss';
+import CurrencyDisplay from '../currency-display/currency-display.component';
+
+const ProductPreview = ({
+	id,
+	imageUrl,
+	price,
+	condition,
+	title,
+	history,
+	free_shipping,
+}) => {
 	return (
-		<div className='product-preview-container'>
+		<div
+			className='product-preview-container'
+			onClick={() => history.push(`/items/${id}`)}
+		>
 			<img
 				width='180'
 				height='180'
@@ -12,8 +27,16 @@ const ProductPreview = ({ imageUrl, price, condition, title }) => {
 				src={imageUrl}
 				alt='product-img'
 			/>
+
 			<div className='product-info'>
-				<span className='price'>$ {price.amount}</span>
+				<span className='price'>
+					<CurrencyDisplay amount={price.amount} currency={price.currency} />
+					{free_shipping ? (
+						<img src={ShippingIcon} className='shipping-icon' alt='shipping' />
+					) : (
+						''
+					)}
+				</span>
 				<span className='title'>{title}</span>
 			</div>
 			<span className='condition'>{condition}</span>
@@ -21,4 +44,4 @@ const ProductPreview = ({ imageUrl, price, condition, title }) => {
 	);
 };
 
-export default ProductPreview;
+export default withRouter(ProductPreview);

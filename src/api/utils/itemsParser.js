@@ -21,7 +21,7 @@ const getItemsSearch = ({ results = [], filters }) => {
 			title: item.title,
 			price: {
 				currency: item.currency_id,
-				amount: parseFloat(item.installments.amount),
+				amount: item.price,
 				decimals: 0,
 			},
 			picture: item.thumbnail,
@@ -39,12 +39,13 @@ const getItemsDetail = (item, { plain_text }) => {
 			title: item.title,
 			price: {
 				currency: item.currency_id,
-				amount: parseFloat(item.price),
-				decimals: 0,
+				amount: item.price,
+				decimals: 2,
 			},
 			picture: item.thumbnail,
 			condition: item.condition,
 			free_shipping: item.shipping.free_shipping,
+			sold_quantity: item.sold_quantity,
 			description: plain_text,
 		},
 	};

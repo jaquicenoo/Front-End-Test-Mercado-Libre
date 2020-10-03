@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.item-detail-container {
+	display: flex;
+	background-color: $white;
+	padding: 32px;
+	.product-detail {
+		display: flex;
+		flex-direction: column;
+		max-width: 680px;
+		margin-right: 32px;
+	}
+	.product-description {
+		display: flex;
+		flex-direction: column;
+		margin: 16px;
+		.title {
+			font-size: 28px;
+			margin-bottom: 32px;
+		}
+		.description {
+			font-size: 16px;
+		}
+	}
+}
