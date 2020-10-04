@@ -23,5 +23,8 @@
 		outline: none;
 		border-radius: $md-dorder;
 		cursor: pointer;
+		@media screen and (max-width: 800px) {
+			width: 100%;
+		}
 	}
 }

@@ -7,4 +7,7 @@ body {
 }
 .container {
 	margin: 0 130px 50px 130px;
+	@media screen and (max-width: 800px) {
+		margin: 0 10px 10px 10px;
+	}
 }

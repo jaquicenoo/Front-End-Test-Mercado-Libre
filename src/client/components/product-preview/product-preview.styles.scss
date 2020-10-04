@@ -33,5 +33,9 @@
 		position: absolute;
 		top: 3em;
 		right: 10em;
+		@media screen and (max-width: 800px) {
+			top: 2.5em;
+			right: 1.5em;
+		}
 	}
 }
